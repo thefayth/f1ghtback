@@ -8,7 +8,8 @@ Date: 2026-07-19
 - **Canva design ID:** `DAHP5jN3nQQ`
 - **Edit:** https://www.canva.com/d/V0XvaOR1a-vfd6a
 - **View:** https://www.canva.com/d/oxbs_ruxlfPGSMB
-- **Local review image:** `outputs/qa/canva-youtube-thumbnail.png`
+- **Public export:** `docs/assets/youtube-thumbnail.png`
+- **SHA-256:** `9ACB2C4599093680DB66B110B012131D5CDFF9C8D3DCA13359B49F7861D29A22`
 
 The selected thumbnail contains only the public product name, the phrase
 "One Safe Next Step," and the Build Week technology line. It contains no case
