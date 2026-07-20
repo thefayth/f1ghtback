@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://f1ghtback-one-safe-next-step.indigo-iris-5804.chatgpt.site"),
   title: "f1ghtback | One Safe Next Step",
   description: "A source-grounded legal-information guide that turns court overwhelm into one contained action.",
   applicationName: "f1ghtback",

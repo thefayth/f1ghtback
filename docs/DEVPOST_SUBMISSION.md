@@ -49,7 +49,7 @@ The next stage is an offline Windows edition with encrypted local records, sourc
 
 ## Submission Links
 
-- Live app: `[LIVE_SITES_URL]`
+- Live app: https://f1ghtback-one-safe-next-step.indigo-iris-5804.chatgpt.site
 - Repository: `https://github.com/thefayth/f1ghtback`
 - Video: `[PUBLIC_YOUTUBE_URL]`
 - Codex feedback session: `[FEEDBACK_SESSION_ID]`

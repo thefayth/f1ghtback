@@ -41,6 +41,9 @@ Project: `f1ghtback: One Safe Next Step`
 - `OPENAI_API_KEY` is not yet configured; the deployed app therefore uses its
   fully functional, clearly labeled source-only path until the masked key is
   added.
+- Owner-only Sites version 1 deployed successfully at
+  https://f1ghtback-one-safe-next-step.indigo-iris-5804.chatgpt.site.
+- Anonymous access returned `401` while the owner-only policy was active.
 
 ## Local Review Artifacts
 

@@ -16,7 +16,7 @@ Built by Faith Atwater-Cheltenham, a Black mother and disabled technologist, fro
 
 ## Try It
 
-The public URL will be added after the validated Sites release is deployed.
+Live app: https://f1ghtback-one-safe-next-step.indigo-iris-5804.chatgpt.site
 
 1. Choose California, Utah, or Cross-state / unsure.
 2. Choose File, Respond, Protection, Get help, or Prepare for review.
