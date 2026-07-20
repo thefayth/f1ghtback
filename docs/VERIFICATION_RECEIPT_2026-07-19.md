@@ -44,11 +44,23 @@ Project: `f1ghtback: One Safe Next Step`
 - Owner-only Sites version 1 deployed successfully at
   https://f1ghtback-one-safe-next-step.indigo-iris-5804.chatgpt.site.
 - Anonymous access returned `401` while the owner-only policy was active.
+- Sites version 2 deployed successfully with the final canonical metadata.
+- The contest Sites project was deliberately changed to public after private
+  verification; anonymous page access returned `200` and the public API
+  returned a valid Utah-scoped source-only response.
+- Public desktop and mobile browser checks passed with no overflow, failed
+  requests, page errors, or focus regression.
+- Public repository verified at https://github.com/thefayth/f1ghtback.
+- The separate `f1ghtback Private Command` Sites project remains owner-only.
 
 ## Local Review Artifacts
 
 - `outputs/qa/desktop-final.png`
 - `outputs/qa/mobile-final.png`
 - `outputs/qa/canva-youtube-thumbnail.png`
+- `docs/assets/product-desktop.png` - SHA-256
+  `12C94A0F9929859BD363860DE30581C1BE91ABADD99D3F9F5B8E375CDA6247BD`
+- `docs/assets/product-mobile.png` - SHA-256
+  `95F6F54469D29CCA9510B3FE7CA6062C500839B4ABB57709DA2FAFC229002D50`
 
 The local QA folder is intentionally excluded from Git and deployment.

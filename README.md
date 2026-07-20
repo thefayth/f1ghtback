@@ -25,6 +25,10 @@ Live app: https://f1ghtback-one-safe-next-step.indigo-iris-5804.chatgpt.site
 
 No sample data is needed. The interface accepts only structured, non-personal selections.
 
+![Verified public desktop flow](docs/assets/product-desktop.png)
+
+Mobile QA capture: [docs/assets/product-mobile.png](docs/assets/product-mobile.png)
+
 ## Local Setup
 
 Requirements: Node.js 22.13 or newer and npm.
