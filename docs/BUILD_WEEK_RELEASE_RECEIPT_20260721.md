@@ -38,10 +38,20 @@ experiment or its screenshots.
 - Missing key, quota failure, timeout, malformed output, legal conclusion, or
   invented source ID: deterministic source-only fallback
 
-The previously recorded Sites version 4 deployment succeeded under deployment
-ID `appgdep_6a5f2b90e9448191bfdb769ad3c25589`. It predates the final
-guided-filing-only reconciliation and must not be treated as proof of the new
-live tree until the post-deployment check is recorded.
+## Live deployment
+
+- Git source commit: `c4864cd8eefc9bc29bc254819147185d09c0af9c`
+- Sites version: `5`
+- Sites deployment: `appgdep_6a5f2ee99f34819190946ab56c979e26`
+- Deployment status: `succeeded`
+- Live URL: https://f1ghtback-one-safe-next-step.indigo-iris-5804.chatgpt.site
+- Deployment archive SHA-256:
+  `5987FB9F5A282AF4445E8BDD35F5D5764F6B1E0408D6DBE120F47C7ED6683566`
+
+Post-deployment checks confirmed an anonymous page load, the California FL-320
+coach, no public record-review lane, no browser warnings or errors, and a live
+`/api/explain-step` response with `mode: source-only`, current source-pack
+status, California-only source IDs, and human-review flags.
 
 ## Remaining account actions
 
