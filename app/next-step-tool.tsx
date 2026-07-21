@@ -17,6 +17,8 @@ import {
   Sparkles,
 } from "lucide-react";
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import type { GuideId } from "./lib/guide-packs";
+import { OFFICIAL_SOURCES } from "./lib/source-manifest";
 
 type Jurisdiction = "california" | "utah" | "cross-state";
 type Need = "file" | "respond" | "protection" | "help" | "review";
@@ -30,18 +32,6 @@ type Result = {
   sourceIds: string[];
   humanReviewRequired: true;
   legalInformationOnly: true;
-};
-
-const sourceLinks: Record<string, { title: string; publisher: string; url: string }> = {
-  "ca-self-help": { title: "California Courts Self-Help", publisher: "Judicial Branch of California", url: "https://selfhelp.courts.ca.gov/" },
-  "ca-court-forms": { title: "Judicial Council Court Forms", publisher: "Judicial Branch of California", url: "https://courts.ca.gov/forms-rules/court-forms" },
-  "la-family-law": { title: "Los Angeles Superior Court Family Law", publisher: "Superior Court of Los Angeles County", url: "https://www.lacourt.ca.gov/pages/lp/family-law" },
-  "ca-legal-help": { title: "Free or low-cost legal help", publisher: "California Courts Self-Help", url: "https://selfhelp.courts.ca.gov/get-free-or-low-cost-legal-help" },
-  "ut-family": { title: "Utah Courts Family Resources", publisher: "Utah State Courts", url: "https://www.utcourts.gov/en/self-help/case-categories/family.html" },
-  "ut-protective-orders": { title: "Utah Protective Orders", publisher: "Utah State Courts", url: "https://www.utcourts.gov/en/self-help/case-categories/protect-order/protective-orders.html" },
-  "ut-mypaperwork": { title: "Utah MyPaperwork", publisher: "Utah State Courts", url: "https://www.utcourts.gov/en/self-help/services/mycase/mypaperwork.html" },
-  "ut-legal-help": { title: "Finding Legal Help in Utah", publisher: "Utah State Courts", url: "https://www.utcourts.gov/en/self-help/legal-help/finding-legal-help/legal-assist.html" },
-  "ada-courts": { title: "ADA information for state and local courts", publisher: "U.S. Department of Justice", url: "https://www.ada.gov/topics/title-ii/" },
 };
 
 const jurisdictions = [
@@ -64,7 +54,7 @@ const timings = [
   { value: "later-or-unknown" as const, label: "Later / unsure", note: "Start by confirming the process" },
 ];
 
-export function NextStepTool() {
+export function NextStepTool({ onStartGuide }: { onStartGuide?: (guideId: GuideId) => void }) {
   const [jurisdiction, setJurisdiction] = useState<Jurisdiction | null>(null);
   const [need, setNeed] = useState<Need | null>(null);
   const [timing, setTiming] = useState<Timing | null>(null);
@@ -74,9 +64,14 @@ export function NextStepTool() {
 
   const canSubmit = Boolean(jurisdiction && need && timing && !loading);
   const selectedSources = useMemo(
-    () => (result?.sourceIds ?? []).map((id) => sourceLinks[id]).filter(Boolean),
+    () => (result?.sourceIds ?? []).map((id) => OFFICIAL_SOURCES[id as keyof typeof OFFICIAL_SOURCES]).filter(Boolean),
     [result],
   );
+  const deepGuide: GuideId | null = need === "respond" && jurisdiction === "california"
+    ? "ca-fl-320-response"
+    : need === "respond" && jurisdiction === "utah"
+      ? "ut-family-answer"
+      : null;
 
   useEffect(() => {
     if (result) document.getElementById("next-step-result")?.focus();
@@ -172,10 +167,15 @@ export function NextStepTool() {
           </div>
           <div className="source-results">
             <h3>Official starting points</h3>
-            <p className="source-check">Links checked July 19, 2026</p>
+            <p className="source-check">Each source shows its last checked date.</p>
             {selectedSources.map((source) => <a href={source.url} target="_blank" rel="noreferrer" key={source.url}><span><strong>{source.title}</strong><small>{source.publisher}</small></span><ExternalLink size={17} aria-hidden="true" /></a>)}
           </div>
           <div className="review-warning"><ShieldAlert size={20} /><span><strong>Human review required.</strong> Confirm forms, timing, filing, service, safety, and jurisdiction with the court self-help center, legal aid, or a qualified lawyer.</span></div>
+          {deepGuide && onStartGuide ? (
+            <button className="primary-button guide-continue" type="button" onClick={() => onStartGuide(deepGuide)}>
+              Continue to guided preparation <ArrowRight size={18} />
+            </button>
+          ) : null}
           <button className="reset-button" type="button" onClick={reset}><RotateCcw size={17} /> Start over</button>
         </section>
       ) : null}

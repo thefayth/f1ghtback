@@ -1,33 +1,32 @@
 # f1ghtback: One Safe Next Step
 
-![f1ghtback One Safe Next Step](public/og.png)
+![f1ghtback One Safe Next Step](public/og-v2.png)
 
-f1ghtback is a source-grounded legal-information guide for people facing family-court overwhelm. Choose a jurisdiction, a practical need, and a timing window. The app returns one contained next action, a short checklist, questions for human legal help, and links from an official allowlist.
+f1ghtback turns a fictional public-safe record into a reviewable command queue, then helps self-represented people choose an official-source route and prepare a draft court-response packet while keeping their own words on their device.
 
 Built by Faith Atwater-Cheltenham, a Black mother and disabled technologist, from lived experience navigating family court.
 
 ## Build Week Entry
 
-- Category: Apps for Your Life
+- Category: **Apps for Your Life**
 - Runtime: OpenAI Sites / Cloudflare Workers
-- AI: GPT-5.6 Responses API with structured output
-- Core guarantee: deterministic source-only output remains available when AI is unavailable
-- Data posture: no account, free-text case narrative, document upload, seeded record, or personal-data storage
+- AI: GPT-5.6 synthetic-record analysis plus optional answer-free step explanations, both with strict structured output
+- Core guarantee: the record demo accepts fictional public-safe text only; personal preparation answers remain in browser memory and never enter Sites, D1, GPT, analytics, or persistent browser storage
+- Live app: https://f1ghtback-one-safe-next-step.indigo-iris-5804.chatgpt.site
 
-## Try It
+Big Stick existed before Build Week as a private local desktop suite. This repository is the separate public-safe contest app. No private desktop source, record, evidence, transcript, credential, or case strategy is included.
 
-Live app: https://f1ghtback-one-safe-next-step.indigo-iris-5804.chatgpt.site
+## What It Does
 
-1. Choose California, Utah, or Cross-state / unsure.
-2. Choose File, Respond, Protection, Get help, or Prepare for review.
-3. Choose Today, Within seven days, or Later / unsure.
-4. Review one next action, a checklist, human-review questions, and official sources.
+1. Analyzes one of two synthetic transcripts into `Today / Next / Waiting / Do Not Touch`, facts, inferences, contradictions, and missing information.
+2. Produces visible AI and evidence-promotion receipts with source/excerpt SHA-256 hashes and a non-negotiable Public Hold.
+3. Routes California, Utah, and cross-state or uncertain situations through three non-personal structured choices.
+4. Provides two deep blank walkthroughs: California FL-320 response preparation and Utah family answer preparation.
+5. Records the user's exact preparation words only in React memory for the life of the tab.
+6. Creates `f1ghtback-review-packet.pdf` and `f1ghtback-companion-packet.txt` entirely in the browser.
+7. Falls back to deterministic held drafts and source guidance when GPT is unavailable, over budget, invalid, or not configured.
 
-No sample data is needed. The interface accepts only structured, non-personal selections.
-
-![Verified public desktop flow](docs/assets/product-desktop.png)
-
-Mobile QA capture: [docs/assets/product-mobile.png](docs/assets/product-mobile.png)
+It does not calculate deadlines, upload evidence, fill or file an official court PDF, contact another person, select a form for cross-state matters, or claim legal sufficiency.
 
 ## Local Setup
 
@@ -38,43 +37,56 @@ npm ci
 npm run dev
 ```
 
-Open the local URL printed by vinext.
-
-GPT-5.6 is optional for local development. Set `OPENAI_API_KEY` in an ignored local environment only. Without it, the application returns a labeled source-only result.
-
-## Verification
-
-```powershell
-npm test
-npm run lint
-```
-
-The tests cover rendered HTML, structured-input validation, jurisdiction isolation, cross-state holds, allowlisted sources, AI failure, and source-only fallback.
+Set `OPENAI_API_KEY` in an ignored local environment only if you want optional GPT-5.6 explanations. The full router, walkthroughs, official links, and packet downloads work without it.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  U["Three structured choices"] --> A["POST /api/next-step"]
-  A --> V["Enum and size validation"]
-  V --> G["GPT-5.6 structured output"]
-  V --> F["Deterministic source-only fallback"]
-  G --> S["Official source ID allowlist"]
-  F --> S
-  S --> R["One action, checklist, review questions"]
+  T["Confirmed synthetic transcript"] --> A["Bounded GPT-5.6 analysis"]
+  A --> Q["Command queue + AI receipt"]
+  Q --> H["Public Hold + custody receipt"]
+  R["Three-choice source router"] --> G["California or Utah guide pack"]
+  G --> M["React memory only"]
+  M --> P["Browser PDF and text packet"]
+  S["Versioned official-source manifest"] --> R
+  S --> G
+  I["Guide ID + step ID only"] --> A["Optional GPT-5.6 explanation"]
+  M -. "never sent" .-x A
 ```
 
-Only curated source metadata enters the model prompt. Model-produced URLs are never rendered. Returned source IDs must match the application allowlist.
+- `POST /api/next-step` accepts three enums only.
+- `POST /api/transcript-review` accepts a bounded, confirmed-fictional transcript and returns a draft with a source hash and human-review hold.
+- `POST /api/explain-step` accepts guide ID, step ID, and detail level only.
+- GPT requests use `store:false`, no tools, strict JSON Schema, bounded output, and an allowlisted source set.
+- D1 stores only reusable finite-output cache entries and a global daily AI counter.
+- A stale guide disables form-specific preparation.
+- `pdf-lib` builds the review packet locally in the browser.
 
-## Legal And Privacy Boundary
+## Source Maintenance
 
-This application provides legal information and preparation support. It does not provide legal advice, select forms for cross-state matters, calculate deadlines, file or serve documents, contact another person, or create an attorney-client relationship.
+```powershell
+npm run sources:check
+```
 
-The public edition excludes evidence, transcripts, child information, case timelines, private strategy, credentials, `.fayth` files, desktop storage, private screenshots, and fundraising systems.
+The weekly workflow checks only allowlisted official URLs, with two-second spacing and no retries. A broken or changed source opens a review issue. Guidance stays held until the current official written source is verified and approved. See [docs/SOURCE_MAINTENANCE.md](docs/SOURCE_MAINTENANCE.md).
 
-## Codex And GPT-5.6
+## Verification
 
-Codex was used to isolate a public-safe product from a larger private desktop system, build the structured workflow, enforce jurisdiction and privacy boundaries, implement tests, run visual QA, and prepare the Sites and GitHub releases. GPT-5.6 is used at runtime only to organize bounded legal-information questions from enumerated inputs. Official source controls and the deterministic fallback remain above model output.
+```powershell
+npm run typecheck
+npm run lint -- --max-warnings=0
+npm run test:unit
+npm run build
+```
+
+Tests cover transcript boundaries and receipts, all router combinations, jurisdiction isolation, stale-source holds, input schemas, model failure, invented source IDs, exact-word preservation, multi-page PDF output, private-answer exclusion, and public-source hygiene.
+
+## Privacy And Legal Boundary
+
+Personal answers are not legal advice, are not a court form, and are not proof of filing or service. The generated packet is marked `DRAFT - NOT FILED - HUMAN REVIEW REQUIRED`.
+
+Use a private device for sensitive preparation. Download before closing if you want to retain the session. Confirm jurisdiction, forms, timing, attachments, filing, service, safety, and accessibility with court self-help, legal aid, or a qualified lawyer.
 
 ## License
 

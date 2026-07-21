@@ -1,0 +1,91 @@
+{
+  "format": "f1ghtback.official-source-baseline.v1",
+  "updatedAt": "2026-07-21T08:00:05.657Z",
+  "manifestVersion": "2026.07.20.1",
+  "sources": {
+    "ca-self-help": {
+      "finalUrl": "https://selfhelp.courts.ca.gov/",
+      "statusCode": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "prefixSha256": "ccc33398bc3eb104f3144cf162bbf085e44a0a25e29876334e90489ef0eae3a2"
+    },
+    "ca-court-forms": {
+      "finalUrl": "https://courts.ca.gov/forms-rules/court-forms",
+      "statusCode": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "prefixSha256": "2840169a293a5b0d9ba1fd53dac45afe684c4eed326d9aee342553d94a2b50e7"
+    },
+    "la-family-law": {
+      "finalUrl": "https://www.lacourt.ca.gov/pages/lp/family-law",
+      "statusCode": 200,
+      "contentType": "text/html",
+      "prefixSha256": "527f791f7a8673686c6867f011026da07307b6d4ba0a7c23c5376cba1b48da82"
+    },
+    "ca-legal-help": {
+      "finalUrl": "https://selfhelp.courts.ca.gov/get-free-or-low-cost-legal-help",
+      "statusCode": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "prefixSha256": "01a670eba3e3097757a99d979b398def5c7b2434d1b2738ab7c7d3ef9c3bbc9a"
+    },
+    "ca-rfo-response": {
+      "finalUrl": "https://selfhelp.courts.ca.gov/request-for-order/respond/select-order-type",
+      "statusCode": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "prefixSha256": "d12d60854dd6d1522623109fd0051b603c2ca10097e2beec852408b6ba64d221"
+    },
+    "ca-fl-320": {
+      "finalUrl": "https://selfhelp.courts.ca.gov/jcc-form/FL-320",
+      "statusCode": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "prefixSha256": "b9a11b2ed59f1fa32033995021af59b4e02660f0641e73df5ee4999fd1c2d5c7"
+    },
+    "ca-rule-5-92": {
+      "finalUrl": "https://courts.ca.gov/cms/rules/index/five/rule5_92",
+      "statusCode": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "prefixSha256": "1ba8caed6f5c84debe35e0aee6be97a63f9a342aa1f17441ea322820cff5df1b"
+    },
+    "ut-family": {
+      "finalUrl": "https://www.utcourts.gov/en/self-help/case-categories/family.html",
+      "statusCode": 200,
+      "contentType": "text/html;charset=utf-8",
+      "prefixSha256": "1a18a4aab88100cb70a2ccb44c26af103e32b3ffeca37e234186f7b541b9f676"
+    },
+    "ut-protective-orders": {
+      "finalUrl": "https://www.utcourts.gov/en/self-help/case-categories/protect-order/protective-orders.html",
+      "statusCode": 200,
+      "contentType": "text/html;charset=utf-8",
+      "prefixSha256": "c0a2e1b21bec85da1cb38de6fef1d271f5bb97f8cdc848bd36ad38bebe0e857c"
+    },
+    "ut-mypaperwork": {
+      "finalUrl": "https://www.utcourts.gov/en/self-help/services/mycase/mypaperwork.html",
+      "statusCode": 200,
+      "contentType": "text/html;charset=utf-8",
+      "prefixSha256": "ecad33b45fe939c264bba769f48dd9d3062d8db9fe61ffbe91e11512da37c9d9"
+    },
+    "ut-legal-help": {
+      "finalUrl": "https://www.utcourts.gov/en/self-help/legal-help/finding-legal-help/legal-assist.html",
+      "statusCode": 200,
+      "contentType": "text/html;charset=utf-8",
+      "prefixSha256": "1a757a2a5bd50ac9d9bf87ecb55b8ae21982d44205242491f0be42f09bcbef4c"
+    },
+    "ut-family-answer": {
+      "finalUrl": "https://www.utcourts.gov/en/self-help/case-categories/family/answer.html",
+      "statusCode": 200,
+      "contentType": "text/html;charset=utf-8",
+      "prefixSha256": "d28edecb9e7a094f43d4755e8d9dfff2af4328e4da1c8f9bceae6b4060e6b97e"
+    },
+    "ut-answer-form": {
+      "finalUrl": "https://apps.utcourts.gov/aem-services/aem/forms/template/1008FA",
+      "statusCode": 200,
+      "contentType": "application/pdf",
+      "prefixSha256": "f988cc2d720ae2bdf10c72ee216871c34199cb7ceedee0b6f605c4a0035f47de"
+    },
+    "ada-courts": {
+      "finalUrl": "https://www.ada.gov/topics/title-ii/",
+      "statusCode": 200,
+      "contentType": "text/html; charset=utf-8",
+      "prefixSha256": "f63b74b0ddcd9320126656a563ca393e824555f4041aa22a6cd30a8fc6af9d5e"
+    }
+  }
+}

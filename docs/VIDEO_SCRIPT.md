@@ -1,31 +1,42 @@
 # Public Video Script
 
-Target duration: 2 minutes 30 seconds. Use Faith's narration, captions, actual product screens, and no case material.
+Target duration: 2 minutes 35 seconds. Use the built-in fictional transcript, blank walkthrough screens, captions, and no personal or case material.
 
-## 0:00-0:22 - Why
+## 0:00-0:18 - Why
 
-"I am Faith Atwater-Cheltenham, a Black mother and disabled technologist. I built f1ghtback from lived experience navigating family court, where fear, deadlines, disability barriers, and too much information can make the next step feel impossible."
+"I am Faith Atwater-Cheltenham, a Black mother and disabled technologist. I built f1ghtback because court papers can make the next safe action nearly impossible to see."
 
-## 0:22-0:43 - The Product
+## 0:18-0:34 - Boundary
 
-"One Safe Next Step does not ask for a name, case number, story, or document. It asks only three structured questions: which court system, what kind of task, and how soon it may matter."
+"This public demo accepts fictional text only. Real records stay in private Big Stick. Preparation answers remain in browser memory, never enter GPT, and disappear when the tab closes unless the user downloads a packet."
 
-## 0:43-1:15 - Walkthrough
+## 0:34-1:05 - Record To Action
 
-"Here I choose California, Respond, and Within seven days. The tool gives me one contained action, a short checklist, focused questions for court self-help or legal aid, and official starting points. There is no invented link and no automatic filing."
+"I choose a built-in fictional planning transcript. GPT-5.6 separates facts from inferences, flags contradictions and missing information, and builds Today, Next, Waiting, and Do Not Touch queues. The model cannot browse, store, publish, file, or send anything."
 
-## 1:15-1:38 - Safety Boundary
+## 1:05-1:25 - Receipts Before Action
 
-"California and Utah sources never mix. If I choose Cross-state or unsure, f1ghtback stops form-specific guidance and prepares questions for a human reviewer. Protection and urgent timing also keep the human-review warning visible."
+"The draft includes an AI receipt with provider, model, sensitivity route, source hash, review state, and approval state. When I promote an excerpt, Web Crypto creates a second custody hash. It remains pending human review and held from public release."
 
-## 1:38-2:04 - GPT-5.6
+## 1:25-1:47 - Official Source Router
 
-"GPT-5.6 receives only those structured selections and curated source metadata. It organizes the next action and questions into validated JSON. The server accepts only allowlisted source IDs. If AI is unavailable, a clearly labeled source-only fallback keeps the workflow useful."
+"The next tab asks only California, Utah, or unsure; respond, start, or safety; and today, soon, or learning. It returns one bounded action and checked official sources. Cross-state uncertainty blocks state-specific form guidance."
 
-## 2:04-2:25 - Codex
+## 1:47-2:18 - Guided Preparation
 
-"Codex helped me isolate this public-safe product from a much larger private desktop system, implement the app and API, test every jurisdiction boundary, inspect privacy risks, run browser checks, and prepare the Sites and GitHub releases."
+"The final tab provides separate California FL-320 and Utah family-answer walkthroughs. Personal answers stay on the device. GPT can explain only the selected guide step without receiving the answer. The browser creates a PDF and companion text packet marked Draft, Not Filed, Human Review Required."
 
-## 2:25-2:30 - Close
+## 2:18-2:35 - Close
 
-"f1ghtback turns court overwhelm into one safe next step, while keeping people, not models, in control."
+"Codex helped design, build, test, secure, and launch this public-safe slice of Big Stick. f1ghtback turns overload into owned proof and one safe next action, with a human still in control."
+
+## Capture Order
+
+1. Title card.
+2. Built-in fictional transcript and Analyze with GPT-5.6.
+3. Command queue, AI receipt, Public Hold, and custody receipt.
+4. California, Respond, Today router selections and official sources.
+5. Blank California FL-320 guide picker and progress rail.
+6. Explain-step boundary and source badge.
+7. Draft PDF/text download controls.
+8. End card with app and repository URLs.

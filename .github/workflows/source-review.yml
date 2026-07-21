@@ -1,0 +1,50 @@
+name: Official source review
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 16 * * 1"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  source-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - id: source-check
+        continue-on-error: true
+        run: npm run sources:check
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-source-check
+          path: outputs/official-source-check.json
+      - if: steps.source-check.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = "Source review required: official family-court guidance changed or failed";
+            const open = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              labels: "source-review",
+            });
+            if (!open.data.some(issue => issue.title === title)) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                labels: ["source-review"],
+                body: "The weekly allowlisted link/hash check failed. Download the workflow receipt, verify the official written source, update the source pack and baseline through review, and keep affected form-specific guidance held until approved.",
+              });
+            }
+            core.setFailed("Official source review is required.");
