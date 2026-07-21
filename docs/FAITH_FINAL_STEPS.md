@@ -15,6 +15,6 @@ Submission values:
 - Category: `Apps for Your Life`
 - Description: `docs/DEVPOST_SUBMISSION.md`
 - Video script: `docs/VIDEO_SCRIPT.md`
-- Codex feedback session: `[FEEDBACK_SESSION_ID]`
+- Codex feedback session: `019f72c5-b343-7a92-86c3-f17aa667f2d7`
 
 Do not show or discuss private Big Stick records, names, cases, children, medical information, credentials, or desktop storage in the video or submission.
