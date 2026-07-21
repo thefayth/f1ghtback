@@ -93,13 +93,14 @@ test("uses GPT-5.6 structured output without storage or tools", async () => {
   assert.equal(capturedUrl, "https://api.openai.com/v1/responses");
   assert.equal(capturedInit.headers.authorization, "Bearer test-key");
   const apiBody = JSON.parse(capturedInit.body);
-  assert.equal(apiBody.model, "gpt-5.6");
+  assert.equal(apiBody.model, "gpt-5.6-sol");
   assert.equal(apiBody.store, false);
   assert.deepEqual(apiBody.tools, []);
   assert.equal(apiBody.text.format.type, "json_schema");
   assert.equal(apiBody.text.format.strict, true);
   assert.equal(payload.mode, "gpt-5.6");
   assert.equal(payload.aiReceipt.provider, "openai");
+  assert.equal(payload.aiReceipt.model, "gpt-5.6-sol");
   assert.equal(payload.aiReceipt.reviewState, "pending-human-review");
   assert.equal(payload.aiReceipt.publicationStatus, "held");
 });

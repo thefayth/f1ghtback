@@ -30,7 +30,7 @@ export type TranscriptAnalysis = {
 export type AiReceipt = {
   receiptVersion: "bigstick.ai-receipt.v1";
   provider: "openai" | "deterministic";
-  model: "gpt-5.6" | "source-only";
+  model: "gpt-5.6-sol" | "source-only";
   sensitivityRoute: "redacted_ok";
   sourceHash: string;
   purpose: "transcript-to-safe-action";
@@ -314,9 +314,9 @@ export function validateTranscriptAnalysis(value: unknown): TranscriptAnalysis |
   return { today, next, waiting, doNotTouch, facts, inferences, contradictions, missingInfo, safeAction, excerpts };
 }
 
-function openAIRequestBody(input: TranscriptReviewInput) {
+export function openAIRequestBody(input: TranscriptReviewInput) {
   return {
-    model: "gpt-5.6",
+    model: "gpt-5.6-sol",
     store: false,
     tools: [],
     max_output_tokens: 1_400,
@@ -440,7 +440,7 @@ function receiptFor(sourceHash: string, mode: "gpt-5.6" | "source-only"): AiRece
   return {
     receiptVersion: "bigstick.ai-receipt.v1",
     provider: generated ? "openai" : "deterministic",
-    model: mode,
+    model: generated ? "gpt-5.6-sol" : "source-only",
     sensitivityRoute: "redacted_ok",
     sourceHash,
     purpose: "transcript-to-safe-action",

@@ -436,7 +436,7 @@ function validateCachedResult(
 function openAIRequestBody(input: NextStepInput) {
   const sources = getAllowedSources(input);
   return {
-    model: "gpt-5.6",
+    model: "gpt-5.6-sol",
     store: false,
     tools: [],
     max_output_tokens: 700,

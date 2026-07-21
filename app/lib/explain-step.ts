@@ -200,7 +200,7 @@ function openAIRequestBody(input: ExplainStepInput) {
   const guide = getGuidePack(input.guideId)!;
   const step = getGuideStep(input.guideId, input.stepId)!;
   return {
-    model: "gpt-5.6",
+    model: "gpt-5.6-sol",
     store: false,
     tools: [],
     max_output_tokens: input.detailLevel === "full" ? 900 : 500,
