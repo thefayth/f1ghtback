@@ -5,6 +5,7 @@ import test from "node:test";
 test("contains the guided filing and packet studio in public source", async () => {
   const files = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/contest-workspace.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/next-step-tool.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/guided-preparation-tool.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/lib/guide-packs.ts", import.meta.url), "utf8"),

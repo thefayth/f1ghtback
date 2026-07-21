@@ -1,10 +1,25 @@
 # Canva Asset Receipt
 
-Date: 2026-07-19
+Updated: 2026-07-21
 
-## Approved for review
+## Current Build Week set
 
-- **YouTube thumbnail:** `YouTube Thumbnail: Bold Command with Warm Texture`
+- **YouTube thumbnail:** `YouTube Thumbnail - RECEIPTS BEFORE ACTION`
+- **Canva design ID:** `DAHQAEDL7mk`
+- **Edit:** https://www.canva.com/d/MR3ZX_KbjM3aB9V
+- **View:** https://www.canva.com/d/1WxtSFhtj21kya3
+- **Architecture infographic:** `Infographic - HOW f1GHTBACK`
+- **Canva design ID:** `DAHQACNi95w`
+- **Edit:** https://www.canva.com/d/DbVS8ZcSMTBiqFh
+- **View:** https://www.canva.com/d/xoPf26Vv0_snkga
+
+Both designs were generated from the first available Canva brand-kit choice and
+the public-safe `CANVA_BRIEF.md`. They contain no real person, case, child,
+record, court document, answer, credential, or private Big Stick material.
+
+## Superseded launch thumbnail
+
+- **Earlier YouTube thumbnail:** `YouTube Thumbnail: Bold Command with Warm Texture`
 - **Canva design ID:** `DAHP5jN3nQQ`
 - **Edit:** https://www.canva.com/d/V0XvaOR1a-vfd6a
 - **View:** https://www.canva.com/d/oxbs_ruxlfPGSMB

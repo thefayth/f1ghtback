@@ -66,6 +66,7 @@ test("GPT receives no personal answer fields and only allowlisted source metadat
   });
   const payload = await response.json();
   assert.equal(payload.mode, "gpt-5.6");
+  assert.equal(capturedBody.model, "gpt-5.6-sol");
   assert.equal(capturedBody.store, false);
   assert.deepEqual(capturedBody.tools, []);
   const prompt = JSON.parse(capturedBody.input[1].content[0].text);

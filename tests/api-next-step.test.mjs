@@ -131,7 +131,7 @@ test("calls the Responses API directly with structured JSON and allowlisted data
   assert.equal(capturedInit.headers.authorization, "Bearer test-key");
 
   const apiBody = JSON.parse(capturedInit.body);
-  assert.equal(apiBody.model, "gpt-5.6");
+  assert.equal(apiBody.model, "gpt-5.6-sol");
   assert.equal(apiBody.store, false);
   assert.deepEqual(apiBody.tools, []);
   assert.equal(apiBody.text.format.type, "json_schema");
