@@ -19,6 +19,13 @@ export async function storeValidatedNextStep(
   combinationHash: string,
   output: NextStepResult,
 ): Promise<void> {
+  return storeValidatedOutput(combinationHash, output);
+}
+
+export async function storeValidatedOutput(
+  combinationHash: string,
+  output: unknown,
+): Promise<void> {
   try {
     const db = getDb();
     if (!db) return;
@@ -41,6 +48,12 @@ export async function storeValidatedNextStep(
 }
 
 export async function loadValidatedNextStep(
+  combinationHash: string,
+): Promise<unknown | null> {
+  return loadValidatedOutput(combinationHash);
+}
+
+export async function loadValidatedOutput(
   combinationHash: string,
 ): Promise<unknown | null> {
   try {

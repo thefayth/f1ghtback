@@ -1,3 +1,8 @@
+import {
+  sourceList,
+  type SourceId,
+} from "./source-manifest.ts";
+
 export const JURISDICTIONS = ["california", "utah", "cross-state"] as const;
 export const NEEDS = ["file", "respond", "protection", "help", "review"] as const;
 export const TIMINGS = ["today", "seven-days", "later-or-unknown"] as const;
@@ -27,64 +32,7 @@ type GeneratedOutput = Pick<
   "nextAction" | "checklist" | "reviewQuestions" | "sourceIds"
 >;
 
-export const OFFICIAL_SOURCES = {
-  "ca-self-help": {
-    title: "California Courts Self-Help",
-    publisher: "Judicial Branch of California",
-    url: "https://selfhelp.courts.ca.gov/",
-    checkedAt: "2026-07-19",
-  },
-  "ca-court-forms": {
-    title: "Judicial Council Court Forms",
-    publisher: "Judicial Branch of California",
-    url: "https://courts.ca.gov/forms-rules/court-forms",
-    checkedAt: "2026-07-19",
-  },
-  "la-family-law": {
-    title: "Los Angeles Superior Court Family Law",
-    publisher: "Superior Court of Los Angeles County",
-    url: "https://www.lacourt.ca.gov/pages/lp/family-law",
-    checkedAt: "2026-07-19",
-  },
-  "ca-legal-help": {
-    title: "Free or low-cost legal help",
-    publisher: "California Courts Self-Help",
-    url: "https://selfhelp.courts.ca.gov/get-free-or-low-cost-legal-help",
-    checkedAt: "2026-07-19",
-  },
-  "ut-family": {
-    title: "Utah Courts Family Resources",
-    publisher: "Utah State Courts",
-    url: "https://www.utcourts.gov/en/self-help/case-categories/family.html",
-    checkedAt: "2026-07-19",
-  },
-  "ut-protective-orders": {
-    title: "Utah Protective Orders",
-    publisher: "Utah State Courts",
-    url: "https://www.utcourts.gov/en/self-help/case-categories/protect-order/protective-orders.html",
-    checkedAt: "2026-07-19",
-  },
-  "ut-mypaperwork": {
-    title: "Utah MyPaperwork",
-    publisher: "Utah State Courts",
-    url: "https://www.utcourts.gov/en/self-help/services/mycase/mypaperwork.html",
-    checkedAt: "2026-07-19",
-  },
-  "ut-legal-help": {
-    title: "Finding Legal Help in Utah",
-    publisher: "Utah State Courts",
-    url: "https://www.utcourts.gov/en/self-help/legal-help/finding-legal-help/legal-assist.html",
-    checkedAt: "2026-07-19",
-  },
-  "ada-courts": {
-    title: "ADA information for state and local courts",
-    publisher: "U.S. Department of Justice",
-    url: "https://www.ada.gov/topics/title-ii/",
-    checkedAt: "2026-07-19",
-  },
-} as const;
-
-export type SourceId = keyof typeof OFFICIAL_SOURCES;
+export { OFFICIAL_SOURCES } from "./source-manifest.ts";
 
 type FetchLike = (
   input: RequestInfo | URL,
@@ -93,8 +41,7 @@ type FetchLike = (
 
 type HandlerDependencies = {
   apiKey?: string;
-  rateSalt?: string;
-  clientAddress?: string | null;
+  rateScope?: string;
   fetch?: FetchLike;
   timeoutMs?: number;
   persistResult?: (
@@ -240,7 +187,7 @@ function sourceIdsFor(input: NextStepInput): SourceId[] {
 }
 
 export function getAllowedSources(input: NextStepInput) {
-  return sourceIdsFor(input).map((id) => ({ id, ...OFFICIAL_SOURCES[id] }));
+  return sourceList(sourceIdsFor(input));
 }
 
 function timingChecklistItem(timing: Timing): string {
@@ -641,6 +588,14 @@ export function dailyRateCounterHash(
   return sha256(`v1:${day}:${salt}:${clientAddress}`);
 }
 
+export function globalDailyRateCounterKey(
+  scope: string,
+  now = new Date(),
+): Promise<string> {
+  const day = now.toISOString().slice(0, 10);
+  return sha256(`v2:${day}:${scope}`);
+}
+
 function jsonResponse(body: unknown, status: number): Response {
   return Response.json(body, {
     status,
@@ -696,14 +651,10 @@ export async function handleNextStepRequest(
     if (
       modelRequestAllowed &&
       dependencies.incrementRateCounter &&
-      dependencies.clientAddress &&
-      dependencies.rateSalt
+      dependencies.rateScope
     ) {
       try {
-        const counterHash = await dailyRateCounterHash(
-          dependencies.clientAddress,
-          dependencies.rateSalt,
-        );
+        const counterHash = await globalDailyRateCounterKey(dependencies.rateScope);
         const count = await dependencies.incrementRateCounter(counterHash);
         if (count !== null && count > DAILY_MODEL_REQUEST_LIMIT) {
           modelRequestAllowed = false;

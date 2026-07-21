@@ -232,8 +232,7 @@ test("uses source-only fallback after the daily model-request limit", async () =
   let fetchCalled = false;
   const { payload } = await responseJson(validInput, {
     apiKey: "test-key",
-    clientAddress: "203.0.113.9",
-    rateSalt: "test-salt",
+    rateScope: "next-step",
     incrementRateCounter: async () => 26,
     fetch: async () => {
       fetchCalled = true;
@@ -286,8 +285,7 @@ test("persists only hashes and validated generated output", async () => {
 
   const { response, payload } = await responseJson(validInput, {
     apiKey: "test-key",
-    clientAddress: "203.0.113.9",
-    rateSalt: "test-salt",
+    rateScope: "next-step",
     fetch: async () => openAIResponse(generatedOutput),
     persistResult: async (combinationHash, output) => {
       storedCombinationHash = combinationHash;
@@ -304,14 +302,13 @@ test("persists only hashes and validated generated output", async () => {
   assert.match(storedCounterHash, /^[a-f0-9]{64}$/);
   assert.deepEqual(storedOutput, payload);
   assert.doesNotMatch(storedCombinationHash, /california|file|today/);
-  assert.doesNotMatch(storedCounterHash, /203\.0\.113\.9/);
+  assert.doesNotMatch(storedCounterHash, /california|file|today|203\.0\.113\.9/);
 });
 
 test("D1 failures fail open without changing validated output", async () => {
   const { payload } = await responseJson(validInput, {
     apiKey: "test-key",
-    clientAddress: "203.0.113.9",
-    rateSalt: "test-salt",
+    rateScope: "next-step",
     loadCachedResult: async () => {
       throw new Error("D1 unavailable");
     },
